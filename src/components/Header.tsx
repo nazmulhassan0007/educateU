@@ -46,7 +46,7 @@ export function Header() {
             />
           </Link>
 
-          <nav aria-label="Main" className="hidden items-center gap-9 lg:flex">
+          <nav aria-label="Main" className="hidden items-center gap-7 whitespace-nowrap xl:flex 2xl:gap-9">
             {nav.map((item) => (
               <a
                 key={item.label}
@@ -61,7 +61,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <a
               href="#cart"
-              className="press hidden items-center gap-2 rounded-lg px-3 py-2 text-[15px] leading-[22.5px] text-white/85 hover:text-white sm:flex"
+              className="press hidden items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-[15px] leading-[22.5px] text-white/85 hover:text-white sm:flex"
             >
               Cart
               <motion.span
@@ -79,7 +79,7 @@ export function Header() {
             </a>
             <a
               href="#login"
-              className="press hidden rounded-lg px-3 py-2 text-[15px] leading-[22.5px] text-white/85 hover:text-white sm:block"
+              className="press hidden whitespace-nowrap rounded-lg px-3 py-2 text-[15px] leading-[22.5px] text-white/85 hover:text-white sm:block"
             >
               Log in
             </a>
@@ -96,7 +96,7 @@ export function Header() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((o) => !o)}
-              className="press ml-1 flex size-11 items-center justify-center rounded-xl text-bone lg:hidden"
+              className="press ml-1 flex size-11 items-center justify-center rounded-xl text-bone xl:hidden"
             >
               <span className="relative block h-4 w-6">
                 <motion.span
@@ -128,7 +128,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8, transition: { duration: 0.18 } }}
             transition={{ duration: 0.28, ease: EASE_OUT }}
-            className="absolute inset-x-0 top-[72px] h-[calc(100dvh-72px)] overflow-y-auto bg-ink/95 backdrop-blur-md lg:hidden"
+            className="absolute inset-x-0 top-[72px] h-[calc(100dvh-72px)] overflow-y-auto bg-ink/95 backdrop-blur-md lg:top-[96px] lg:h-[calc(100dvh-96px)] xl:hidden"
           >
             <nav aria-label="Mobile" className="container-x flex flex-col gap-1 py-6">
               {nav.map((item, i) => (

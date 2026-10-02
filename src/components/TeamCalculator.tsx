@@ -132,7 +132,7 @@ export function TeamCalculator() {
               </div>
             </div>
 
-            <div className="mt-10 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-end sm:justify-between">
+            <div className="mt-10 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
               <div>
                 <p className="text-[13px] leading-[19.5px] text-bone/60">
                   {selected.length} {selected.length === 1 ? "course" : "courses"} × {learners}{" "}

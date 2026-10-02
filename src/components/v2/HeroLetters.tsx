@@ -100,6 +100,8 @@ function CourseCard({ ready }: { ready: boolean }) {
 export function HeroLetters() {
   const { ready } = usePageReady();
   const desktop = useDesktop();
+  const reduce = useReducedMotion();
+  const zoom = desktop && !reduce;
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const scale = useTransform(scrollYProgress, [0, 0.85, 1], [1, 9, 9]);
@@ -113,18 +115,17 @@ export function HeroLetters() {
   });
 
   return (
-    <section ref={ref} className="relative bg-bone text-ink lg:h-[155vh] motion-reduce:lg:h-auto" aria-labelledby="hero-title">
-      <div className="relative overflow-hidden lg:sticky lg:top-0 lg:h-[100dvh] lg:min-h-[720px]">
+    <section ref={ref} className="relative bg-bone text-ink lg:h-[155vh]" aria-labelledby="hero-title">
+      <div className="relative overflow-hidden lg:sticky lg:top-0 lg:min-h-[100dvh]">
         <video src={HERO_VIDEO} poster={HERO_POSTER} autoPlay muted loop playsInline aria-hidden className="absolute inset-0 h-full w-full object-cover" />
-        <div aria-hidden className="absolute inset-0 hidden bg-bone/70 motion-reduce:block" />
-
+        
         {/* Bone paper with "made simple" knocked out: screen blend keeps the film inside the black letters only. */}
         <motion.div
           aria-hidden
-          style={desktop ? { scale, opacity: maskFade } : undefined}
-          className="absolute inset-0 origin-[50%_38%] bg-bone mix-blend-screen motion-reduce:hidden"
+          style={zoom ? { scale, opacity: maskFade } : undefined}
+          className="absolute inset-0 origin-[50%_38%] bg-bone mix-blend-screen"
         >
-          <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 pt-[calc(72px+10vh)] md:px-10 lg:pt-[176px]">
+          <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 pt-[calc(72px+10vh)] md:px-10 lg:pt-[calc(96px+6vh)] xl:pt-[176px]">
             {/* Spacer matches the headline row above the letters */}
             <div className="h-[calc(2*clamp(28px,4.2vw,60px))] md:h-[clamp(40px,4.2vw,60px)]" />
             <span style={{ whiteSpace: "nowrap" }} className="mt-2 block font-title text-[17vw] leading-[0.86] tracking-[-0.06em] text-black md:text-[clamp(72px,15.6vw,300px)]">
@@ -134,7 +135,7 @@ export function HeroLetters() {
         </motion.div>
 
         {/* Soft mint light in two corners */}
-        <motion.div aria-hidden style={desktop ? { opacity: maskFade } : undefined} className="pointer-events-none absolute inset-0 motion-reduce:hidden">
+        <motion.div aria-hidden style={zoom ? { opacity: maskFade } : undefined} className="pointer-events-none absolute inset-0">
           <Glows
             spots={[
               { at: "left:-16% top:-33%", size: "47vw", color: "rgb(30 233 181 / 0.32)" },
@@ -145,8 +146,8 @@ export function HeroLetters() {
 
         {/* Type and offer row */}
         <motion.div
-          style={desktop ? { opacity: copyFade } : undefined}
-          className="relative mx-auto flex h-full min-h-[100dvh] w-full max-w-[1440px] flex-col px-5 pb-10 pt-[calc(72px+10vh)] md:px-10 lg:min-h-0 lg:pb-[72px] lg:pt-[176px] motion-reduce:!opacity-100"
+          style={zoom ? { opacity: copyFade } : undefined}
+          className="relative mx-auto flex min-h-[100dvh] w-full max-w-[1440px] flex-col px-5 pb-10 pt-[calc(72px+10vh)] md:px-10 lg:pb-[72px] lg:pt-[calc(96px+6vh)] xl:pt-[176px]"
         >
           <motion.h1 id="hero-title" className="m-0 font-title text-[clamp(28px,4.2vw,60px)] leading-[1] tracking-[-0.03em]" {...rise(0.05)}>
             <span className="block">Online courses and certification</span>
@@ -159,13 +160,13 @@ export function HeroLetters() {
 
           <motion.p
             aria-hidden
-            className="m-0 mt-3 self-end font-title text-[clamp(28px,4.2vw,60px)] leading-[1] tracking-[-0.03em] text-green"
+            className="m-0 mt-[clamp(12px,2.2vw,44px)] self-end font-title text-[clamp(28px,4.2vw,60px)] leading-[1] tracking-[-0.03em] text-green"
             {...rise(0.2)}
           >
             for everyone.
           </motion.p>
 
-          <div className="mt-auto flex flex-col gap-10 pt-10 lg:mt-[clamp(24px,5vh,30px)] lg:flex-row lg:items-end lg:gap-24 lg:pt-0">
+          <div className="mt-auto flex flex-col gap-10 pt-10 lg:mt-0 lg:flex-row lg:items-end lg:gap-16 lg:pt-[clamp(24px,5vh,56px)] xl:gap-24">
             <motion.div className="flex min-w-0 flex-1 flex-col items-start gap-7" {...rise(0.3)}>
               <p className="m-0 max-w-[640px] text-[17px] leading-[1.45] text-ink/72 md:text-xl md:leading-7">{SUBTITLE}</p>
               <div className="flex flex-wrap items-center gap-3">
