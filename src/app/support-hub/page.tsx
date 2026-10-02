@@ -6,6 +6,9 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { Icon, type IconName } from "@/components/site/Icon";
 import { Item, Reveal, RevealGroup } from "@/components/motion/Reveal";
 import { SupportFaq } from "@/components/pages/SupportFaq";
+import { StepJourney } from "@/components/pages/StepJourney";
+import { Ticker } from "@/components/site/Ticker";
+import { CopyEmail } from "@/components/site/CopyEmail";
 
 export const metadata: Metadata = {
   title: "Support Hub | educateU Business",
@@ -65,7 +68,8 @@ export default function SupportHubPage() {
     <SiteShell>
       <PageHero
         crumb="Support Hub"
-        title={["Support Hub"]}
+        title={["Real people,", "real support."]}
+        accentLine={1}
         intro="Real support team, real people, UK business hours. Find out how enrolling, certificates, course access, refunds and team purchases work at educateU, or search below for a quick answer."
       >
         <a
@@ -79,54 +83,31 @@ export default function SupportHubPage() {
         </a>
       </PageHero>
 
-      {/* How it works */}
-      <section className="bg-bone py-20 lg:py-32" aria-labelledby="how-title">
-        <div className="container-x">
-          <SectionHeading id="how-title" title="How it works" lede="From checkout to certificate in six steps, on your schedule." />
-          <RevealGroup gap={0.07} className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {steps.map((s, i) => (
-              <Item key={s.title} className="relative flex flex-col rounded-3xl bg-paper p-7 shadow-[0_0_0_1px_rgba(6,24,11,0.08)]">
-                <div className="flex items-center justify-between">
-                  <span className="grid size-12 place-items-center rounded-xl bg-ink text-mint">
-                    <Icon name={s.icon} />
-                  </span>
-                  <span className="font-mono text-xs text-ink/45">STEP {i + 1}</span>
-                </div>
-                <h3 className="mt-6 font-title text-[24px] leading-[1.15] tracking-[-0.03em] text-ink">{s.title}</h3>
-                <p className="mt-2 text-[15px] leading-[1.6] text-ink/70">{s.body}</p>
-              </Item>
-            ))}
-          </RevealGroup>
-        </div>
+      {/* How it works: a pinned journey on wide screens, a rail on phones */}
+      <section className="bg-bone py-20 lg:py-0" aria-labelledby="how-title">
+        <StepJourney steps={steps} />
       </section>
 
-      {/* Refund policy */}
-      <section id="refund-policy" className="grain relative overflow-hidden bg-forest py-20 text-bone lg:py-28" aria-labelledby="refund-title">
-        <div className="container-x relative z-[2] grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
+      {/* Refund policy: the window, set as large as the price on the homepage */}
+      <section id="refund-policy" className="grain relative scroll-mt-24 overflow-hidden bg-forest py-20 text-bone lg:py-32" aria-labelledby="refund-title">
+        <div className="container-x relative z-[2] grid grid-cols-1 items-end gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="font-title text-[clamp(7rem,17vw,15rem)] leading-[0.8] tracking-[-0.05em]" aria-label="14 days">
+              <Ticker to={14} />
+              <span className="text-mint"> days</span>
+            </p>
+          </div>
           <div className="lg:col-span-5">
             <SectionHeading id="refund-title" tone="bone" title="Refund policy" />
             <Reveal delay={0.1}>
-              <p className="mt-6 text-[17px] leading-[1.6] text-bone/75 lg:text-lg">
+              <p className="mt-6 text-[17px] leading-[1.6] text-bone/80">
                 We sell one-off course access, not a subscription. There’s nothing to auto-renew and nothing to cancel.
+              </p>
+              <p className="mt-4 text-[17px] leading-[1.6] text-bone/80">
+                If you’re unhappy with a course, or a technical issue prevents you from accessing it, contact our support team within 14 days of purchase. Every request is reviewed fairly, case by case, by a real person on our UK-based team.
               </p>
             </Reveal>
           </div>
-          <RevealGroup gap={0.1} className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-7">
-            <Item className="rounded-3xl bg-ink/60 p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.1)]">
-              <p className="font-title text-[56px] leading-none tracking-[-0.04em] text-mint">14 days</p>
-              <p className="mt-4 text-[15px] leading-[1.6] text-bone/80">
-                If you’re unhappy with a course, or a technical issue prevents you from accessing it, contact our support team within 14 days of purchase.
-              </p>
-            </Item>
-            <Item className="rounded-3xl bg-ink/60 p-7 shadow-[0_0_0_1px_rgba(255,255,255,0.1)]">
-              <span className="grid size-12 place-items-center rounded-xl bg-mint text-ink">
-                <Icon name="shield" />
-              </span>
-              <p className="mt-5 text-[15px] leading-[1.6] text-bone/80">
-                Every request is reviewed fairly, case by case, by a real person on our UK-based team.
-              </p>
-            </Item>
-          </RevealGroup>
         </div>
       </section>
 
@@ -151,19 +132,28 @@ export default function SupportHubPage() {
       <section className="bg-bone py-20 lg:py-32" aria-labelledby="touch-title">
         <div className="container-x">
           <SectionHeading id="touch-title" title="Get in touch" lede="Still stuck? Our UK-based team is here on weekdays." />
-          <RevealGroup gap={0.07} className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {contact.map((c) => (
-              <Item key={c.title} className="flex flex-col rounded-3xl bg-paper p-7 shadow-[0_0_0_1px_rgba(6,24,11,0.08)]">
-                <span className="grid size-12 place-items-center rounded-xl bg-ink text-mint">
-                  <Icon name={c.icon} />
+          <Reveal delay={0.1} className="mt-12">
+            <p className="text-sm font-medium leading-5 text-ink/60">Email support</p>
+            <div className="mt-2">
+              <CopyEmail email="support@educateu.com" />
+            </div>
+            <p className="mt-3 max-w-[520px] text-[15px] leading-[1.55] text-ink/65">
+              Best for detailed questions, attach screenshots if you’re reporting a technical issue.
+            </p>
+          </Reveal>
+          <RevealGroup gap={0.08} className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-ink/10 md:grid-cols-3">
+            {contact.slice(1).map((c) => (
+              <Item key={c.title} className="flex flex-col bg-paper p-7">
+                <span className="grid size-11 place-items-center rounded-xl bg-ink text-mint">
+                  <Icon name={c.icon} size={20} />
                 </span>
-                <h3 className="mt-6 text-sm font-medium leading-5 text-ink/60">{c.title}</h3>
+                <h3 className="mt-5 text-sm font-medium leading-5 text-ink/60">{c.title}</h3>
                 {c.href ? (
-                  <a href={c.href} className="mt-1 font-title text-[22px] leading-[1.2] tracking-[-0.03em] text-ink transition-colors hover:text-green">
+                  <a href={c.href} className="mt-1 font-title text-[24px] leading-[1.2] tracking-[-0.03em] text-ink transition-colors hover:text-green">
                     {c.value}
                   </a>
                 ) : (
-                  <p className="mt-1 font-title text-[22px] leading-[1.2] tracking-[-0.03em] text-ink">{c.value}</p>
+                  <p className="mt-1 font-title text-[24px] leading-[1.2] tracking-[-0.03em] text-ink">{c.value}</p>
                 )}
                 <p className="mt-3 text-[14px] leading-[1.55] text-ink/65">{c.body}</p>
               </Item>

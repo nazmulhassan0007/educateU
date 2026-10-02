@@ -7,6 +7,8 @@ import { FaqSection } from "@/components/site/FaqList";
 import { Icon } from "@/components/site/Icon";
 import { Item, Reveal, RevealGroup } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/pages/ContactForm";
+import { LiveStatus } from "@/components/site/LiveStatus";
+import { CopyEmail } from "@/components/site/CopyEmail";
 
 export const metadata: Metadata = {
   title: "Contact Us | educateU Business",
@@ -56,8 +58,10 @@ export default function ContactPage() {
     <SiteShell>
       <PageHero
         crumb="Contact us"
-        title={["Contact educateU"]}
+        title={["Contact", "educateU."]}
+        accentLine={1}
         intro="We're here to help with general enquiries about educateU, partnerships, and organisational information."
+        aside={<LiveStatus />}
       />
 
       <section className="bg-bone py-20 lg:py-28" aria-labelledby="talk-title">
@@ -105,24 +109,20 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Email channels */}
-        <RevealGroup gap={0.1} className="container-x mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:mt-16">
+        {/* Email channels: set large, one click to copy */}
+        <RevealGroup gap={0.12} className="container-x mt-16 grid grid-cols-1 gap-12 border-t border-ink/12 pt-12 md:grid-cols-2 md:gap-16 lg:mt-24">
           {channels.map((c) => (
-            <Item key={c.title} className="flex flex-col rounded-[28px] bg-paper p-8 shadow-[0_0_0_1px_rgba(6,24,11,0.08)] lg:p-10">
-              <span className="grid size-12 place-items-center rounded-xl bg-ink text-mint">
-                <Icon name={c.icon} />
-              </span>
-              <h3 className="mt-6 font-title text-[28px] leading-[1.1] tracking-[-0.03em] text-ink">{c.title}</h3>
-              <p className="mt-3 flex-1 text-[15px] leading-[1.6] text-ink/70">{c.body}</p>
-              <a
-                href={`mailto:${c.email}`}
-                className="group mt-6 inline-flex w-fit items-center gap-2 font-title text-[22px] tracking-[-0.03em] text-green transition-colors hover:text-ink"
-              >
-                {c.email}
-                <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden>
-                  →
+            <Item key={c.title}>
+              <div className="flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-xl bg-ink text-mint">
+                  <Icon name={c.icon} size={20} />
                 </span>
-              </a>
+                <h3 className="font-title text-[24px] leading-[1.1] tracking-[-0.03em] text-ink">{c.title}</h3>
+              </div>
+              <p className="mt-4 max-w-[480px] text-[15px] leading-[1.6] text-ink/70">{c.body}</p>
+              <div className="mt-6">
+                <CopyEmail email={c.email} />
+              </div>
             </Item>
           ))}
         </RevealGroup>

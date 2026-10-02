@@ -227,6 +227,12 @@ html.lenis body {
   50% { transform: translate3d(6%, -8%, 0) scale(1.12); }
 }
 
+/* Gentle drift for arch photos (motion-safe only, applied per element) */
+@keyframes arch-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+
 /* Buttons: every pressable element answers the press */
 .press {
   transition: transform 160ms var(--ease-out), background-color 200ms ease, color 200ms ease,

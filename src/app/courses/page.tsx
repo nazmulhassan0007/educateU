@@ -4,9 +4,10 @@ import { PageHero } from "@/components/site/PageHero";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { CtaBand } from "@/components/site/CtaBand";
 import { Icon, type IconName } from "@/components/site/Icon";
-import { Item, RevealGroup } from "@/components/motion/Reveal";
+import { Item, Reveal, RevealGroup } from "@/components/motion/Reveal";
 import { CourseExplorer } from "@/components/pages/CourseExplorer";
 import { ReviewMarquee } from "@/components/pages/ReviewMarquee";
+import { ArchStack } from "@/components/site/ArchStack";
 
 export const metadata: Metadata = {
   title: "Explore Our Courses | educateU Business",
@@ -42,35 +43,49 @@ export default function CoursesPage() {
     <SiteShell>
       <PageHero
         crumb="Courses"
-        title={["Explore online", "CPD courses"]}
+        title={["Explore online", "CPD courses."]}
+        accentLine={1}
+        aside={
+          <ArchStack
+            images={[
+              { src: "/images/courses/emergency-first-aid.png", alt: "" },
+              { src: "/images/courses/fire-safety-awareness.png", alt: "Fire Safety Awareness course" },
+              { src: "/images/courses/gdpr.png", alt: "" },
+            ]}
+          />
+        }
         intro="Every course here is CPD accredited with your certificate included and instant access the moment you enrol. No subscription: browse, buy, and start straight away."
-      >
-        <ul className="mt-8 flex flex-wrap gap-2">
-          {["18 courses", "£15 per course", "Certificate included", "Self-paced"].map((f) => (
-            <li key={f} className="rounded-full bg-white/8 px-3.5 py-1.5 text-sm leading-5 text-bone/85 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]">
-              {f}
-            </li>
-          ))}
-        </ul>
-      </PageHero>
+      />
 
       <CourseExplorer />
 
       <section className="bg-bone py-20 lg:py-32" aria-labelledby="why-courses-title">
-        <div className="container-x">
-          <SectionHeading
-            id="why-courses-title"
-            title="Why choose our courses"
-            lede="At educateU, we empower lifelong learners through affordable, accessible courses. Our mission is to help you grow professionally without barriers."
-          />
-          <RevealGroup gap={0.08} className="mt-12 grid gap-px overflow-hidden rounded-3xl bg-ink/10 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-32">
+              <SectionHeading id="why-courses-title" title="Why choose our courses" />
+              <Reveal delay={0.1}>
+                <p className="mt-6 max-w-[440px] text-[17px] leading-[1.6] text-ink/70">
+                  At educateU, we empower lifelong learners through affordable, accessible courses. Our mission is to help you grow professionally without barriers.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+          <RevealGroup gap={0.1} className="border-b border-ink/12 lg:col-span-7">
             {reasons.map((r) => (
-              <Item key={r.title} className="flex flex-col bg-paper p-7 lg:p-8">
-                <span className="grid size-12 place-items-center rounded-xl bg-ink text-mint">
+              <Item
+                key={r.title}
+                className="group grid grid-cols-[56px_1fr] gap-x-6 border-t border-ink/12 py-8 transition-colors duration-500 lg:py-10"
+              >
+                <span className="grid size-14 place-items-center rounded-2xl bg-ink text-mint transition-transform duration-500 [transition-timing-function:var(--ease-out)] group-hover:-rotate-6 group-hover:scale-105">
                   <Icon name={r.icon} />
                 </span>
-                <h3 className="mt-6 font-title text-[24px] leading-[1.15] tracking-[-0.03em] text-ink">{r.title}</h3>
-                <p className="mt-3 text-[15px] leading-[1.6] text-ink/70">{r.body}</p>
+                <div>
+                  <h3 className="font-title text-[clamp(1.75rem,2.8vw,2.5rem)] leading-[1.05] tracking-[-0.03em] text-ink transition-colors duration-300 group-hover:text-green">
+                    {r.title}
+                  </h3>
+                  <p className="mt-3 max-w-[520px] text-[16px] leading-[1.6] text-ink/70">{r.body}</p>
+                </div>
               </Item>
             ))}
           </RevealGroup>

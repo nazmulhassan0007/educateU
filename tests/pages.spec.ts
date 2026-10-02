@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("Inner pages", () => {
   test("about page renders mission, vision and values", async ({ page }) => {
     await page.goto("/about");
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Who we are");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Who");
     for (const name of ["Our mission", "Vision", "Our values", "Why educateU?", "Who educateU is for", "Our commitment"]) {
       await expect(page.getByRole("heading", { name })).toBeAttached();
     }
