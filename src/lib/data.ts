@@ -202,11 +202,11 @@ export const faqs = [
 ];
 
 export const nav = [
-  { label: "Courses", href: "#courses" },
-  { label: "About Us", href: "#about" },
-  { label: "Support Hub", href: "#faq" },
-  { label: "Certificate Checker", href: "#certificate" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Courses", href: "/courses" },
+  { label: "About Us", href: "/about" },
+  { label: "Support Hub", href: "/support-hub" },
+  { label: "Certificate Checker", href: "/#certificate" },
+  { label: "Contact Us", href: "/contact-us" },
 ];
 
 

@@ -100,7 +100,7 @@ export function Subjects() {
         >
           <Item className="min-h-[420px] md:col-span-2 lg:row-span-2 lg:min-h-0">
             <Tile
-              href="#courses"
+              href="/courses"
               image={health.image}
               imageOpacity="opacity-70"
               gradient="bg-gradient-to-t from-ink via-ink/30 to-transparent"
@@ -119,7 +119,7 @@ export function Subjects() {
 
           <Item className="md:col-span-2">
             <Tile
-              href="#courses"
+              href="/courses"
               image={compliance.image}
               imageOpacity="opacity-55"
               gradient="bg-gradient-to-r from-ink/90 via-ink/50 to-transparent"
@@ -136,7 +136,7 @@ export function Subjects() {
 
           <Item>
             <Tile
-              href="#courses"
+              href="/courses"
               image={cyber.image}
               imageOpacity="opacity-45"
               gradient="bg-gradient-to-t from-ink via-ink/40 to-transparent"
@@ -152,7 +152,7 @@ export function Subjects() {
 
           <Item>
             <Tile
-              href="#courses"
+              href="/courses"
               image={leadership.image}
               imageOpacity="opacity-45"
               gradient="bg-gradient-to-t from-ink via-ink/40 to-transparent"

@@ -1,13 +1,29 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { EASE_OUT } from "@/lib/motion";
 
 const columns = [
-  { title: "Explore", links: ["Courses", "About us", "Contact"] },
-  { title: "Support", links: ["Support Hub", "Certificate Checker", "Refund Policy", "Cookies Policy"] },
+  {
+    title: "Explore",
+    links: [
+      { label: "Courses", href: "/courses" },
+      { label: "About us", href: "/about" },
+      { label: "Contact", href: "/contact-us" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      { label: "Support Hub", href: "/support-hub" },
+      { label: "Certificate Checker", href: "/#certificate" },
+      { label: "Refund Policy", href: "/support-hub#refund-policy" },
+      { label: "Cookies Policy", href: "/support-hub#faq" },
+    ],
+  },
 ];
 
 export function Footer() {
@@ -99,10 +115,10 @@ export function Footer() {
                 <p className="text-[13px] leading-[19.5px] text-bone/60">{col.title}</p>
                 <ul className="mt-5 flex flex-col gap-3">
                   {col.links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="text-base leading-6 text-bone transition-colors duration-200 hover:text-mint">
-                        {l}
-                      </a>
+                    <li key={l.label}>
+                      <Link href={l.href} className="text-base leading-6 text-bone transition-colors duration-200 hover:text-mint">
+                        {l.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>

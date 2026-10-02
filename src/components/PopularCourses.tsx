@@ -69,7 +69,7 @@ export function PopularCourses() {
           <Reveal delay={0.1}>
             <Magnetic>
             <a
-              href="#courses"
+              href="/courses"
               className="press group inline-flex items-center gap-3 rounded-xl bg-ink px-6 py-4 text-base font-medium leading-6 text-bone hover:bg-[#0d2a16]"
             >
               View all 18 courses

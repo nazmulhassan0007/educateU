@@ -33,13 +33,13 @@ export function Cta() {
           </Reveal>
           <Reveal delay={0.3} className="mt-10 flex flex-wrap gap-3">
             <Magnetic>
-              <a href="#courses" className="press block rounded-xl bg-mint px-7 py-4 text-base font-medium leading-6 text-ink hover:bg-[#3df0c1]">
+              <a href="/courses" className="press block rounded-xl bg-mint px-7 py-4 text-base font-medium leading-6 text-ink hover:bg-[#3df0c1]">
                 Explore Our Courses
               </a>
             </Magnetic>
             <Magnetic>
               <a
-                href="mailto:support@educateu.com"
+                href="/contact-us"
                 className="press block rounded-xl px-7 py-4 text-base font-medium leading-6 text-bone shadow-[0_0_0_1px_rgba(255,255,255,0.25)] hover:bg-white/5 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.45)]"
               >
                 Contact Us

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { nav } from "@/lib/data";
@@ -14,6 +15,8 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { count, pulse } = useCart();
+  const pathname = usePathname();
+  const isActive = (href: string) => href.startsWith("/") && !href.includes("#") && pathname.startsWith(href);
 
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 24));
 
@@ -48,13 +51,14 @@ export function Header() {
 
           <nav aria-label="Main" className="hidden items-center gap-7 whitespace-nowrap xl:flex 2xl:gap-9">
             {nav.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
-                className="relative text-[15px] leading-[22.5px] text-white/80 transition-colors duration-200 hover:text-white after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-mint after:transition-transform after:duration-300 after:[transition-timing-function:var(--ease-out)] hover:after:scale-x-100"
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className="relative text-[15px] leading-[22.5px] text-white/80 transition-colors duration-200 hover:text-white aria-[current=page]:text-white aria-[current=page]:after:scale-x-100 after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-mint after:transition-transform after:duration-300 after:[transition-timing-function:var(--ease-out)] hover:after:scale-x-100"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
