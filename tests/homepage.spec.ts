@@ -1,8 +1,8 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("educateU Business homepage", () => {
+test.describe("Version 1 homepage (/v1)", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/v1");
   });
 
   test("renders every section from the design", async ({ page }) => {

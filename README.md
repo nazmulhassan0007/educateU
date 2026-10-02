@@ -1,6 +1,6 @@
 # educateU Business — homepage
 
-Next.js 16 (App Router) + Tailwind CSS v4 build of the Figma design "Homepage · Variant B · Desktop 1440".
+Next.js 16 (App Router) + Tailwind CSS v4 build of the educateU Business site. The homepage at `/` uses the daylight "letters" hero (Figma node 42:2120) and the FAQ reader; the original Figma homepage ("Homepage · Variant B · Desktop 1440") is kept at `/v1`. Inner pages: `/courses`, `/about`, `/contact-us`, `/support-hub`.
 
 Motion stack: **Motion** (framer-motion successor) for component state and entrances, **GSAP** (ScrollTrigger + SplitText)
 for scroll-driven and text choreography, **Lenis** for smooth scrolling. The logo preloader hands off into the hero

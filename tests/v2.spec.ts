@@ -1,8 +1,8 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("Version 2 homepage", () => {
+test.describe("Homepage", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/v2");
+    await page.goto("/");
   });
 
   test("letters hero renders with video and facts", async ({ page }) => {
@@ -24,5 +24,10 @@ test.describe("Version 2 homepage", () => {
   test("no horizontal overflow", async ({ page }) => {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow).toBeLessThanOrEqual(0);
+  });
+
+  test("old /v2 link redirects home", async ({ page }) => {
+    await page.goto("/v2");
+    await expect(page).toHaveURL(/\/$/);
   });
 });
